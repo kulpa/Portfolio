@@ -1,7 +1,10 @@
 """
-This File Calculates the NPV of VLCC
-@author : Kodai Ito, 2015/10/24
+This File Calculates the NPV of BulkCapesize
+@author : Kodai Ito, 2015/10/26
 """
+import sys,os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../Expect')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 
 import csv
 import Oil_expectation as oe
@@ -44,4 +47,4 @@ def ReturnNPV():
 
 	return NPV  
 
-print "Returned BCapesize NPV: " + str(ReturnNPV()) + " USD"
+#print "Returned BCapesize NPV: " + str(ReturnNPV()) + " USD"

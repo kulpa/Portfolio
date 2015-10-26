@@ -7,7 +7,7 @@ import datetime
 import matplotlib
 from datetime import datetime as dt
 
-f = open('../data/CrudeOilPrice.csv', 'rb')
+f = open('../../data/CrudeOilPrice.csv', 'rb')
 
 dataReader = csv.reader(f)
 
@@ -34,7 +34,7 @@ for num in range(1000):
  
 	orn.ornstein_uhlenbeck_model() # recalculate
 
-	f = open('../scenario/Oil_scenario_ornstein.csv', 'rb')
+	f = open('../../scenario/Oil_scenario_ornstein.csv', 'rb')
 
 	dataReader = csv.reader(f)
 

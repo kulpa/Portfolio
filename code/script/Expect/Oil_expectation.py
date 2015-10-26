@@ -47,12 +47,10 @@ probability = 0.5 * (1 + v/var)
 u = math.e**var
 d = math.e**(-var)
 
-print "---------------------------"
-print "Oil binomial parameter"
-print "u: " + str(u)
-print "d: " + str(d)
+print "-------------Oil binomial parameter--------------"
+print "u          : " + str(u)
+print "d          : " + str(d)
 print "probability: " + str(probability)
-print "---------------------------"
 
 logging.info('Calculation about binomial_lattice_model end')
 

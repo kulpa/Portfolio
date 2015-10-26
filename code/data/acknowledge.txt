@@ -1,0 +1,2 @@
+Oil_Price.csv : https://www.quandl.com/collections/markets/crude-oil 
+DCOILWTICO.csv : https://research.stlouisfed.org/fred2/series/DCOILWTICO/downloaddata

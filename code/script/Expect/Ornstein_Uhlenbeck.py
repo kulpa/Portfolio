@@ -14,7 +14,7 @@ mean = 48.8476190476
 sigma = 4.3488515538
 
 # read the csv file and calculate the parameter # 
-f = open('../../data/CrudeOilPrice.csv', 'rb')
+f = open('../data/CrudeOilPrice.csv', 'rb')
 
 dataReader = csv.reader(f)
 
@@ -31,8 +31,10 @@ for row in dataReader:
 
 # write the csv file # 
 def ornstein_uhlenbeck_model():
-	os.remove('../../scenario/Oil_scenario_ornstein.csv')
-	f = open('../../scenario/Oil_scenario_ornstein.csv', 'ab') 
+	# os.remove('../scenario/Oil_scenario_ornstein.csv')
+	# f = open('../scenario/Oil_scenario_ornstein.csv', 'ab') 
+	os.remove('../scenario/Oil_scenario.csv')
+	f = open('../scenario/Oil_scenario.csv', 'ab') 
 	csvWriter = csv.writer(f)
 	next_price = prices[-1]
 

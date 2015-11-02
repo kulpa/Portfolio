@@ -3,11 +3,9 @@ This File Calculates the NPV of VLCC
 @author : Kodai Ito, 2015/10/24
 """
 import sys,os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../Expect')
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 
 import csv
-import Oil_expectation as oe
 import settings as s
 
 # input
@@ -33,7 +31,7 @@ def ReturnNPV():
 	# set the BSI
 	BSI_Month = [] #income/ton
 	for Oil_Month_Price in Oil_Month_Prices:
-		BSI_estimated = 0.5 * Oil_Month_Price + 800 # This must be changed!!!
+		BSI_estimated = -3 * Oil_Month_Price + 800 # This must be changed!!!
 		BSI_Month.append(BSI_estimated)
 
 	# NPV

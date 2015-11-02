@@ -11,7 +11,7 @@ DISCOUNT_RATE = 0.07        #7%
 VLCC_DEADWEIGHT = 300000    #ton
 VLCC_VELOCITY = 30          #km/h
 VLCC_DISTANCE = 10605       #km
-BCI_RATE = 0.7               #70%
+WS_RATE = 0.7               #70%
 VLCC_FC = 100               #ton/day fuel consumption
 VLCC_BUILD = 150000000      #USD to build
 

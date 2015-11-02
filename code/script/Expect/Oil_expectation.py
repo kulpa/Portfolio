@@ -79,4 +79,4 @@ def binomial_lattice_model():
 	f.close()
 	return Oil_price_scenario
 
-binomial_lattice_model()
+#binomial_lattice_model()

@@ -7,7 +7,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../Expect')
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 
 import csv
-import Oil_expectation as oe
 import settings as s
 
 # input
@@ -32,8 +31,9 @@ def ReturnNPV():
 
 	# set the BPI
 	BPI_Month = [] #income/ton
+	BPI_Month.append(761)
 	for Oil_Month_Price in Oil_Month_Prices:
-		BPI_estimated = 1 * Oil_Month_Price + 800 # This must be changed!!!
+		BPI_estimated = -1.87 * Oil_Month_Price + 0.90 * BPI_Month[-1] + 297 # This must be changed!!!
 		BPI_Month.append(BPI_estimated)
 
 	# NPV

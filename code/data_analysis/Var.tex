@@ -1,0 +1,589 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Var}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{pandas} \PY{k+kn}{import} \PY{n}{DataFrame}\PY{p}{,} \PY{n}{read\PYZus{}csv}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd} 
+        \PY{k+kn}{import} \PY{n+nn}{sys} 
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+        
+        \PY{c}{\PYZsh{}Crude oil analysis}
+        \PY{n}{OIL\PYZus{}LOCATION} \PY{o}{=} \PY{l+s}{r\PYZsq{}}\PY{l+s}{../data/CrudeOilPrice.csv}\PY{l+s}{\PYZsq{}}
+        \PY{n}{DF\PYZus{}OIL} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{OIL\PYZus{}LOCATION}\PY{p}{)} 
+        
+        \PY{n}{DF\PYZus{}OIL}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{DATE}\PY{l+s}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{DF\PYZus{}OIL}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{DATE}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{Y\PYZhy{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{DF\PYZus{}OIL}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+        \PY{n}{DF\PYZus{}OIL}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Crude Oil Price}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{DATE}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{VALUE}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 357 entries, 0 to 356
+Data columns (total 2 columns):
+DATE     357 non-null datetime64[ns]
+VALUE    357 non-null float64
+dtypes: datetime64[ns](1), float64(1)
+memory usage: 8.4 KB
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1081501d0>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Var_files/Var_0_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{DF\PYZus{}OIL\PYZus{}LATER} \PY{o}{=} \PY{n}{DF\PYZus{}OIL}\PY{p}{[}\PY{l+m+mi}{277}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{DF\PYZus{}OIL\PYZus{}LATER}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}OIL\PYZus{}LATER}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        \PY{n}{DF\PYZus{}OIL\PYZus{}LATER}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}          DATE   VALUE
+        0  2009-02-01   39.09
+        1  2009-03-01   47.94
+        2  2009-04-01   49.65
+        3  2009-05-01   59.03
+        4  2009-06-01   69.64
+        5  2009-07-01   64.15
+        6  2009-08-01   71.04
+        7  2009-09-01   69.41
+        8  2009-10-01   75.72
+        9  2009-11-01   77.99
+        10 2009-12-01   74.47
+        11 2010-01-01   78.33
+        12 2010-02-01   76.39
+        13 2010-03-01   81.20
+        14 2010-04-01   84.29
+        15 2010-05-01   73.74
+        16 2010-06-01   75.34
+        17 2010-07-01   76.32
+        18 2010-08-01   76.60
+        19 2010-09-01   75.24
+        20 2010-10-01   81.89
+        21 2010-11-01   84.25
+        22 2010-12-01   89.15
+        23 2011-01-01   89.17
+        24 2011-02-01   88.58
+        25 2011-03-01  102.86
+        26 2011-04-01  109.53
+        27 2011-05-01  100.90
+        28 2011-06-01   96.26
+        29 2011-07-01   97.30
+        ..        \ldots     \ldots
+        49 2013-03-01   92.94
+        50 2013-04-01   92.02
+        51 2013-05-01   94.51
+        52 2013-06-01   95.77
+        53 2013-07-01  104.67
+        54 2013-08-01  106.57
+        55 2013-09-01  106.29
+        56 2013-10-01  100.54
+        57 2013-11-01   93.86
+        58 2013-12-01   97.63
+        59 2014-01-01   94.62
+        60 2014-02-01  100.82
+        61 2014-03-01  100.80
+        62 2014-04-01  102.07
+        63 2014-05-01  102.18
+        64 2014-06-01  105.79
+        65 2014-07-01  103.59
+        66 2014-08-01   96.54
+        67 2014-09-01   93.21
+        68 2014-10-01   84.40
+        69 2014-11-01   75.79
+        70 2014-12-01   59.29
+        71 2015-01-01   47.22
+        72 2015-02-01   50.58
+        73 2015-03-01   47.82
+        74 2015-04-01   54.45
+        75 2015-05-01   59.27
+        76 2015-06-01   59.82
+        77 2015-07-01   50.90
+        78 2015-08-01   42.87
+        
+        [79 rows x 2 columns]
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c}{\PYZsh{}BCI analysis}
+        \PY{n}{BCI\PYZus{}LOCATION} \PY{o}{=} \PY{l+s}{r\PYZsq{}}\PY{l+s}{../data/LLOYDS\PYZhy{}BCI.csv}\PY{l+s}{\PYZsq{}}
+        \PY{n}{DF\PYZus{}BCI} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{BCI\PYZus{}LOCATION}\PY{p}{)} 
+        
+        \PY{n}{DF\PYZus{}BCI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{DF\PYZus{}BCI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{Y\PYZhy{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{DF\PYZus{}BCI}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCI}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{DF\PYZus{}BCI}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}          BCI\_Value
+        count    80.000000
+        mean   2386.225000
+        std    1383.793364
+        min     474.000000
+        25\%    1384.000000
+        50\%    2051.000000
+        75\%    3145.500000
+        max    7241.000000
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Var_files/Var_2_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c}{\PYZsh{}BPI analysis}
+        \PY{n}{BPI\PYZus{}LOCATION} \PY{o}{=} \PY{l+s}{r\PYZsq{}}\PY{l+s}{../data/LLOYDS\PYZhy{}BPI.csv}\PY{l+s}{\PYZsq{}}
+        \PY{n}{DF\PYZus{}BPI} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{BPI\PYZus{}LOCATION}\PY{p}{)} 
+        
+        \PY{n}{DF\PYZus{}BPI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{DF\PYZus{}BPI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{Y\PYZhy{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{DF\PYZus{}BPI}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPI}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{DF\PYZus{}BPI}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}          BPI\_Value
+        count    80.000000
+        mean   1583.100000
+        std     957.236933
+        min     423.000000
+        25\%     867.250000
+        50\%    1271.500000
+        75\%    1940.250000
+        max    4247.000000
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Var_files/Var_3_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{}BSI analysis}
+        \PY{n}{BSI\PYZus{}LOCATION} \PY{o}{=} \PY{l+s}{r\PYZsq{}}\PY{l+s}{../data/LLOYDS\PYZhy{}BSI.csv}\PY{l+s}{\PYZsq{}}
+        \PY{n}{DF\PYZus{}BSI} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{BSI\PYZus{}LOCATION}\PY{p}{)} 
+        
+        \PY{n}{DF\PYZus{}BSI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{DF\PYZus{}BSI}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{Y\PYZhy{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{DF\PYZus{}BSI}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BSI}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BSI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{DF\PYZus{}BSI}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:}          BSI\_Value
+        count    39.000000
+        mean    875.358974
+        std     214.315617
+        min     515.000000
+        25\%     709.000000
+        50\%     887.000000
+        75\%     962.000000
+        max    1475.000000
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Var_files/Var_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{}Iron Ore analysis}
+        \PY{n}{ORE\PYZus{}LOCATION} \PY{o}{=} \PY{l+s}{r\PYZsq{}}\PY{l+s}{../data/ODA\PYZhy{}PIORECR\PYZus{}USD.csv}\PY{l+s}{\PYZsq{}}
+        \PY{n}{DF\PYZus{}ORE} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{ORE\PYZus{}LOCATION}\PY{p}{)} 
+        
+        \PY{n}{DF\PYZus{}ORE}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{DF\PYZus{}ORE}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{Y\PYZhy{}}\PY{l+s}{\PYZpc{}}\PY{l+s}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{DF\PYZus{}ORE}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Iron Ore Price}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Date}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Value}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x10a8ef810>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Var_files/Var_5_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c}{\PYZsh{} DF\PYZus{}ORE\PYZus{}E: from 2009/3/31 \PYZhy{} 2015/9/30}
+         \PY{n}{DF\PYZus{}ORE\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}ORE}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{350}\PY{p}{]}
+         \PY{n}{DF\PYZus{}ORE\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}ORE\PYZus{}E}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{DF\PYZus{}ORE\PYZus{}E}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}ORE\PYZus{}E}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} DF\PYZus{}BCI\PYZus{}E: from 2009/3/31 \PYZhy{} 2015/9/30}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}BCI}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}BCI\PYZus{}E}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}E}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}BCI\PYZus{}E}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} DF\PYZus{}BCI\PYZus{}L: from 2009/4/30 \PYZhy{} 2015/10/31}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}L} \PY{o}{=} \PY{n}{DF\PYZus{}BCI}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{79}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}L} \PY{o}{=} \PY{n}{DF\PYZus{}BCI\PYZus{}L}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BCI\PYZus{}L}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}BCI\PYZus{}L}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} DF\PYZus{}BPI\PYZus{}E: from 2009/3/31 \PYZhy{} 2015/9/30}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}BPI}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}E} \PY{o}{=} \PY{n}{DF\PYZus{}BPI\PYZus{}E}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}E}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}BPI\PYZus{}E}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} DF\PYZus{}BPI\PYZus{}L: from 2009/4/30 \PYZhy{} 2015/10/31}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}L} \PY{o}{=} \PY{n}{DF\PYZus{}BPI}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{79}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}L} \PY{o}{=} \PY{n}{DF\PYZus{}BPI\PYZus{}L}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{DF\PYZus{}BPI\PYZus{}L}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{DF\PYZus{}BPI\PYZus{}L}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} multiregression of BCI}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels.formula.api} \PY{k+kn}{as} \PY{n+nn}{sm}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCIt}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BCI\PYZus{}L}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{BCIt1}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BCI\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{BPIt1}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BPI\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Oil}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}OIL\PYZus{}LATER}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{VALUE}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{ORE}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}ORE\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{ols}\PY{p}{(}\PY{n}{formula}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCIt \PYZti{} BCIt1 + Oil}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{n}{result}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   BCIt   R-squared:                       0.522
+Model:                            OLS   Adj. R-squared:                  0.510
+Method:                 Least Squares   F-statistic:                     41.51
+Date:                Wed, 11 Nov 2015   Prob (F-statistic):           6.53e-13
+Time:                        10:59:11   Log-Likelihood:                -654.28
+No. Observations:                  79   AIC:                             1315.
+Df Residuals:                      76   BIC:                             1322.
+Df Model:                           2                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0\% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept   1425.7680    590.874      2.413      0.018       248.941  2602.595
+BCIt1          0.7003      0.080      8.726      0.000         0.540     0.860
+Oil           -8.5135      6.217     -1.369      0.175       -20.895     3.868
+==============================================================================
+Omnibus:                       12.958   Durbin-Watson:                   1.949
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               14.556
+Skew:                           0.834   Prob(JB):                     0.000691
+Kurtosis:                       4.280   Cond. No.                     1.49e+04
+==============================================================================
+
+Warnings:
+[1] The condition number is large, 1.49e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} multiregression of BPI}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels.formula.api} \PY{k+kn}{as} \PY{n+nn}{sm}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPIt}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BPI\PYZus{}L}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{BPIt1}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BPI\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCIt1}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}BCI\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{BCI\PYZus{}Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Oil}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}OIL\PYZus{}LATER}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{VALUE}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{ORE}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{n}{DF\PYZus{}ORE\PYZus{}E}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Value}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{ols}\PY{p}{(}\PY{n}{formula}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{BPIt \PYZti{} BPIt1 + Oil}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{n}{result}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   BPIt   R-squared:                       0.828
+Model:                            OLS   Adj. R-squared:                  0.824
+Method:                 Least Squares   F-statistic:                     183.2
+Date:                Wed, 11 Nov 2015   Prob (F-statistic):           8.51e-30
+Time:                        10:59:14   Log-Likelihood:                -584.75
+No. Observations:                  79   AIC:                             1176.
+Df Residuals:                      76   BIC:                             1183.
+Df Model:                           2                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0\% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept    447.7766    246.868      1.814      0.074       -43.904   939.457
+BPIt1          0.9005      0.048     18.582      0.000         0.804     0.997
+Oil           -3.5412      2.590     -1.367      0.176        -8.701     1.618
+==============================================================================
+Omnibus:                        5.242   Durbin-Watson:                   2.055
+Prob(Omnibus):                  0.073   Jarque-Bera (JB):                7.333
+Skew:                           0.092   Prob(JB):                       0.0256
+Kurtosis:                       4.481   Cond. No.                     1.01e+04
+==============================================================================
+
+Warnings:
+[1] The condition number is large, 1.01e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels.formula.api} \PY{k+kn}{as} \PY{n+nn}{sm}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{32}\PY{p}{,} \PY{l+m+mi}{234}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{42523}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{ols}\PY{p}{(}\PY{n}{formula}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{A \PYZti{} B + C}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print} \PY{n}{result}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      A   R-squared:                       0.579
+Model:                            OLS   Adj. R-squared:                  0.158
+Method:                 Least Squares   F-statistic:                     1.375
+Date:                Fri, 30 Oct 2015   Prob (F-statistic):              0.421
+Time:                        11:25:30   Log-Likelihood:                -18.178
+No. Observations:                   5   AIC:                             42.36
+Df Residuals:                       2   BIC:                             41.19
+Df Model:                           2                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0\% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept     14.9525     17.764      0.842      0.489       -61.481    91.386
+B              0.4012      0.650      0.617      0.600        -2.394     3.197
+C              0.0004      0.001      0.650      0.583        -0.002     0.003
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   1.061
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.498
+Skew:                          -0.123   Prob(JB):                        0.780
+Kurtosis:                       1.474   Cond. No.                     5.21e+04
+==============================================================================
+
+Warnings:
+[1] The condition number is large, 5.21e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} 
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

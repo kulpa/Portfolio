@@ -8,11 +8,13 @@ import BulkCapesize as BC
 import BulkPanamax as BP
 import BulkSupramax as BS
 import VLCC as VL
-#import Oil_expectation as oe
-import Ornstein_Uhlenbeck as ou
+import Oil_expectation as oe
+#import Ornstein_Uhlenbeck as ou
+import CalcBaltic as cb
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import pylab as plt
+import settings as s
 
 NPV_BC = []
 NPV_BP = []
@@ -22,8 +24,9 @@ m_times = 1000 # montecalro times
 
 # motecalro for m_times
 for num in range(m_times):
-	#oe.binomial_lattice_model()
-	ou.ornstein_uhlenbeck_model()
+	oe.binomial_lattice_model()
+	#ou.ornstein_uhlenbeck_model()
+	cb.WriteBalticCSV()
 	NPV_BC.append(BC.ReturnNPV())
 	NPV_BP.append(BP.ReturnNPV())
 	NPV_BS.append(BS.ReturnNPV())
@@ -39,7 +42,10 @@ def ReturnData():
 	return (NPV_BC, NPV_BP, NPV_BS, NPV_VL)
 
 def ReturnNPArrayData():
-	return (BCn,BPn,BSn,VLn)
+	return (map(lambda n:n/s.BC_BUILD, BCn),map(lambda n:n/s.BP_BUILD, BPn),map(lambda n:n/s.BS_BUILD, BSn),map(lambda n:n/s.VLCC_BUILD, VLn))
+	#return (map(lambda n:n/s.BC_BUILD, BCn),map(lambda n:n/s.BP_BUILD, BPn),map(lambda n:n/s.BS_BUILD, BSn))
+
+	#map(lambda n:n/s.BC_BUILD, BCn)
 
 def WriteHistgram():
 	plt.hist(BCn)
@@ -69,7 +75,7 @@ def CoefficientAnalysis():
 	print "VLCC and Supramax    : " + str(np.corrcoef(VLn, BSn)[0,1])
 
 CoefficientAnalysis()
-# WriteHistgram()
+WriteHistgram()
 
 
 

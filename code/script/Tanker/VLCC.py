@@ -7,6 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 
 import csv
 import settings as s
+import random
 
 # input
 deadweight =  s.VLCC_DEADWEIGHT
@@ -17,6 +18,8 @@ year = s.YEAR
 fc = s.VLCC_FC
 discount_rate = s.DISCOUNT_RATE
 c_build = s.VLCC_BUILD
+operation_cost = s.VLCC_OPE
+other_cost = s.VLCC_OTHER
 
 def ReturnNPV():
 	# set the value
@@ -41,7 +44,8 @@ def ReturnNPV():
 			# print "Month:" +str(12*var + num) +  " | " + str(Oil_Month_Price[12*var + num])
 			income_per_year += (0.1932 * Oil_Month_Price[12*var] + 6.713) * WS_rate * transportation_amount_per_month
 			c_fuel_per_year += fc * 30 * (Oil_Month_Price[12*var + num] / 0.143 )
-		NPV += (income_per_year - c_fuel_per_year) / (1 + discount_rate)**var
+		outcome_per_year = c_fuel_per_year + 12*operation_cost + 12*other_cost
+		NPV += ((income_per_year - outcome_per_year)) / (1 + discount_rate)**var
 	NPV = NPV - c_build
 
 	return NPV 

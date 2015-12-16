@@ -21,12 +21,21 @@ def WriteGraph():
 
 	plt.show()
 
+# def rand_weights(n):
+#     ''' Produces n random weights that sum to 1 '''
+#     k = np.random.randint(10,size=n)
+#     k = map(float,k)
+#     k = np.array(k)
+#     return k / sum(k)
+
 def rand_weights(n):
     ''' Produces n random weights that sum to 1 '''
     k = np.random.rand(n)
     return k / sum(k)
 
+
 weight_list=[]
+weight_random_list=[]
 mean_list=[]
 sigma_list=[]
 
@@ -46,11 +55,13 @@ def random_portfolio(returns):
     if sigma > 2:
         return random_portfolio(returns)
     weight_list.append([round(w[0,0],3), round(w[0,1],3), round(w[0,2],3), round(w[0,3],3)])
+    weight_random_list.append([round(w[0,0],3), round(w[0,1],3), round(w[0,2],3), round(w[0,3],3)])
     #weight_list.append([round(w[0,0],3), round(w[0,1],3), round(w[0,2],3)])
     mean_list.append(mu[0,0])
     sigma_list.append(sigma[0,0])
     return mu, sigma
 
+opt_weight_list = []
 def optimal_portfolio(returns):
     n = len(returns)
     returns = np.asmatrix(returns)
@@ -74,6 +85,7 @@ def optimal_portfolio(returns):
 
     for x in portfolios:
         weight_list.append([round(x[0],3), round(x[1],3), round(x[2],3), round(x[3],3)])
+        opt_weight_list.append([round(x[0],3), round(x[1],3), round(x[2],3), round(x[3],3)])
         #weight_list.append([round(x[0],3), round(x[1],3), round(x[2],3)]) 
     ## CALCULATE RISKS AND RETURNS FOR FRONTIER
     returns = [blas.dot(pbar, x) for x in portfolios]
@@ -93,6 +105,7 @@ def optimal_portfolio(returns):
     print "-------------------debug-------------------"
     print x1
     return np.asarray(wt), returns, risks
+    #return returns, risks
 
 n_portfolios = 2000
 means, stds = np.column_stack([
@@ -133,6 +146,7 @@ class PointBrowser:
         self.selected.set_visible(True)
         self.selected.set_data(clicked)
         self.text.set_text(' std: %f\n mean: %f\n'%(clicked) + "kind: BC,BP,BS,VL\nweight: " + str(weight))
+        print ' std: %f\n mean: %f\n'%(clicked) + "kind: BC,BP,BS,VL\nweight: " + str(weight)
         self.fig.canvas.draw()
 
 fig = plt.figure()
@@ -146,6 +160,7 @@ plt.ylabel('mean')
 # plt.title('Portfolios')
 
 weights, returns, risks = optimal_portfolio(return_vec)
+#returns, risks = optimal_portfolio(return_vec)
 print "---------best portfolio-----------"
 print weights
 print "----------------------------------"
@@ -159,4 +174,29 @@ fig.canvas.mpl_connect('pick_event', browser.onpick)
 
 plt.show()
 
+def WriteOptPortfolioHistgram():
+    np_opt_array = np.asarray(opt_weight_list)
+    plt.hist(np_opt_array.T[0],normed=True,bins=10)
+    plt.hist(np_opt_array.T[1],normed=True,bins=20,alpha=0.7)
+    plt.hist(np_opt_array.T[2],normed=True,bins=3)
+    plt.hist(np_opt_array.T[3],normed=True,bins=20,alpha=0.7)
+
+    plt.title("Histgram of Optimal Portfolio")
+    plt.xlabel("Percentage")
+    plt.ylabel("Frequency")
+    plt.legend(['Capesize','Panamax','Supramax','VLCC'])
+    plt.show()
+
+def WriteRandomPortfolioHistgram():
+    np_random_array = np.asarray(weight_random_list)
+    plt.hist(np_random_array.T[0])
+
+    plt.title("Histgram of Blue dot Portfolio")
+    plt.xlabel("Percentage")
+    plt.ylabel("Frequency")
+    plt.legend(['Capesize'])
+    plt.show()
+
+WriteOptPortfolioHistgram()
+WriteRandomPortfolioHistgram()
 # fig = plt.figure()

@@ -38,24 +38,42 @@ BPn = np.array(NPV_BP)
 BSn = np.array(NPV_BS)
 VLn = np.array(NPV_VL)
 
+BCn_return_rate = map(lambda n:n/s.BC_BUILD, BCn)
+BPn_return_rate = map(lambda n:n/s.BP_BUILD, BPn)
+BSn_return_rate = map(lambda n:n/s.BS_BUILD, BSn)
+VLn_return_rate = map(lambda n:n/s.VLCC_BUILD, VLn)
+
 def ReturnData():
 	return (NPV_BC, NPV_BP, NPV_BS, NPV_VL)
 
 def ReturnNPArrayData():
-	return (map(lambda n:n/s.BC_BUILD, BCn),map(lambda n:n/s.BP_BUILD, BPn),map(lambda n:n/s.BS_BUILD, BSn),map(lambda n:n/s.VLCC_BUILD, VLn))
+	return (BCn_return_rate,BPn_return_rate,BSn_return_rate,VLn_return_rate)
 	#return (map(lambda n:n/s.BC_BUILD, BCn),map(lambda n:n/s.BP_BUILD, BPn),map(lambda n:n/s.BS_BUILD, BSn))
 
 	#map(lambda n:n/s.BC_BUILD, BCn)
 
-def WriteHistgram():
+def WriteNPVHistgram():
 	plt.hist(BCn)
 	plt.hist(BPn)
 	plt.hist(BSn)
 	plt.hist(VLn)
 
 
-	plt.title("Histgram")
+	plt.title("Histgram of NPV")
 	plt.xlabel("NPV[USD]")
+	plt.ylabel("Frequency")
+	plt.legend(['Capesize','Panamax','Supramax','VLCC'])
+	plt.show()
+
+def WriteReturnHistgram():
+	plt.hist(BCn_return_rate)
+	plt.hist(BPn_return_rate)
+	plt.hist(BSn_return_rate)
+	plt.hist(VLn_return_rate)
+
+
+	plt.title("Histgram of Return rate")
+	plt.xlabel("NPV_Return")
 	plt.ylabel("Frequency")
 	plt.legend(['Capesize','Panamax','Supramax','VLCC'])
 	plt.show()
@@ -66,6 +84,11 @@ def CoefficientAnalysis():
 	print 'BulkPanamaxNPV : avg=' + str(np.average(BPn)) + " standard=" + str(np.std(BPn))
 	print 'BulkSupramaxNPV: avg=' + str(np.average(BSn)) + " standard=" + str(np.std(BSn))
 	print 'VLCCNPV        : avg=' + str(np.average(VLn)) + " standard=" + str(np.std(VLn))
+	print "------------Return rate-------------------------------"
+	print 'BulkCapesizeReturn: avg=' + str(np.average(BCn_return_rate)) + " standard=" + str(np.std(BCn_return_rate))
+	print 'BulkPanamaxReturn : avg=' + str(np.average(BPn_return_rate)) + " standard=" + str(np.std(BPn_return_rate))
+	print 'BulkSupramaxReturn: avg=' + str(np.average(BSn_return_rate)) + " standard=" + str(np.std(BSn_return_rate))
+	print 'VLCCReturn        : avg=' + str(np.average(VLn_return_rate)) + " standard=" + str(np.std(VLn_return_rate))
 	print "------------About correlation coefficient-------------"
 	print "Capesize and Panamax : " + str(np.corrcoef(BCn, BPn)[0,1])
 	print "Capesize and Supramax: " + str(np.corrcoef(BCn, BSn)[0,1])
@@ -75,7 +98,8 @@ def CoefficientAnalysis():
 	print "VLCC and Supramax    : " + str(np.corrcoef(VLn, BSn)[0,1])
 
 CoefficientAnalysis()
-WriteHistgram()
+WriteNPVHistgram()
+WriteReturnHistgram()
 
 
 

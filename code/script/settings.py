@@ -13,9 +13,11 @@ VLCC_VELOCITY = 30          #km/h
 VLCC_DISTANCE = 10605       #km
 WS_RATE = 0.7               #70%
 VLCC_FC = 100               #ton/day fuel consumption
-VLCC_BUILD = 150000000      #USD to build
+VLCC_BUILD = 120000000      #USD to build
 VLCC_OPE = 2400000/12		#Operation cost
 VLCC_OTHER = 1000000/12		#Other cost
+
+# source of building cost: http://marketrealist.com/2013/07/new-capesize-price-jumps-most-in-5-years-positive-for-dry-bulk-shipping-stocks/
 
 # About BulkCapesize
 # Cape Garland
@@ -23,7 +25,7 @@ VLCC_OTHER = 1000000/12		#Other cost
 #BC_DEADWEIGHT = 178394    	#ton
 #BC_VELOCITY = 18.5        	#km/h
 #BC_DISTANCE = 5472	      	#km  Japan to Australlia
-BC_BUILD = 80000000       	#USD to build # This must be changed!!!!!
+BC_BUILD = 60000000      	#USD to build # This must be changed!!!!!
 BC_OPE = 1200000/12			#Operation cost
 BC_OTHER = 800000/12		#Other cost
 
@@ -32,7 +34,7 @@ BC_OTHER = 800000/12		#Other cost
 #BP_DEADWEIGHT = 72000     	#ton
 #BP_VELOCITY = 26.5        	#km/h
 #BP_DISTANCE = 5472	      	#km  Japan to Australlia # This must be changed
-BP_BUILD = 50000000       	#USD to build # This must be changed!!!!!
+BP_BUILD = 40000000       	#USD to build # This must be changed!!!!!
 BP_OPE = 800000/12			#Operation cost
 BP_OTHER = 400000/12		#Other cost
 
@@ -41,7 +43,7 @@ BP_OTHER = 400000/12		#Other cost
 #BS_DEADWEIGHT = 55000     	#ton
 #BS_VELOCITY = 26.5        	#km/h
 #BS_DISTANCE = 5472	      	#km  Japan to Australlia # This must be changed
-BS_BUILD = 20000000       	#USD to build # This must be changed!!!!!
-BS_OPE = 0					#Operation cost
-BS_OTHER = 0				#Other cost
+BS_BUILD = 35000000       	#USD to build # This must be changed!!!!!
+BS_OPE = 700000/12			#Operation cost
+BS_OTHER = 350000/12		#Other cost
 

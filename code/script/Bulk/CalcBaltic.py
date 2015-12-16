@@ -42,9 +42,14 @@ def WriteBalticCSV():
 	now_month = 10
 
 	for Oil_Month_Price in Oil_Month_Prices:
-		BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,1384) # This must be changed!!!
-		BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,957)# This must be changed!!!
-		BSI = -1 * Oil_Month_Price + 0.9 * BSI + np.random.normal(0,214) 	# Tekitoooooooooooooooooooooo
+		# BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,1384) # This must be changed!!!
+		# BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,957)# This must be changed!!!
+		# BSI = -1 * Oil_Month_Price + 0.9 * BSI + np.random.normal(0,214) 		# Tekitoooooooooooooooooooooo
+
+		# keep the correlation coefficient
+		BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,500) 
+		BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,300)
+		BSI = 0.31 * Oil_Month_Price + 0.7 * BSI + 170 + np.random.normal(0,200) 		
 
 		if now_month == 13:
 			now_month = 1

@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 #import Ornstein_Uhlenbeck as orn
+#import Geometric_Mean_Reversion as gmr
 import Oil_expectation as oe
 import datetime
 import matplotlib
@@ -35,12 +36,13 @@ max_price = 0
 min_prices = []
 min_price = 10000
 d = []
-for num in range(1000):
+for num in range(100):
 	
 	print "Processed: " + str(float(num)/1000.0 * 100) + "%"
  
 	#orn.ornstein_uhlenbeck_model() # recalculate
 	oe.binomial_lattice_model()
+	#gmr.geometric_mean_reversion()
 
 	#f = open('../../scenario/Oil_scenario_ornstein.csv', 'rb')
 	f = open('/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/scenario/Oil_scenario.csv', 'rb')
@@ -58,22 +60,22 @@ for num in range(1000):
 		datetime_reader.append(dt.strptime(row[0], '%Y/%m'))
 		i += 1
 
-	if prices[-1] > max_price:
-		max_price = prices[-1]
-		max_prices = prices
-		d = datetime_reader
+	# if prices[-1] > max_price:
+	# 	max_price = prices[-1]
+	# 	max_prices = prices
+	# 	d = datetime_reader
 
-	if prices[-1] < min_price:
-		min_price = prices[-1]
-		min_prices = prices
-		d = datetime_reader
+	# if prices[-1] < min_price:
+	# 	min_price = prices[-1]
+	# 	min_prices = prices
+	# 	d = datetime_reader
 
-	# graph_date2 = matplotlib.dates.date2num(datetime_reader)
-	# plt.plot_date(graph_date2,prices,'-')	
+	graph_date2 = matplotlib.dates.date2num(datetime_reader)
+	plt.plot_date(graph_date2,prices,'-')	
 
-graph_date2 = matplotlib.dates.date2num(d)
-plt.plot_date(graph_date2,max_prices,'-')
-plt.plot_date(graph_date2,min_prices,'-')
+# graph_date2 = matplotlib.dates.date2num(d)
+# plt.plot_date(graph_date2,max_prices,'-')
+# plt.plot_date(graph_date2,min_prices,'-')
 plt.xlabel("[year]")
 plt.ylabel("Oil[USD/h]")	
 plt.show()

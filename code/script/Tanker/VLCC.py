@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 This File Calculates the NPV of VLCC
 @author : Kodai Ito, 2015/10/07
@@ -30,6 +31,14 @@ def ReturnNPV():
 		Oil_Month_Price.append(float(row[1]))
 	f.close()
 
+	# めんどいので時間は気にしない
+	f = open('../scenario/WS_scenario.csv', 'rb')
+	dataReader = csv.reader(f)
+	WS_Month_rate = [] #US dollar / barrel  1 barrel = 143kg 
+	for row in dataReader:
+		WS_Month_rate.append(float(row[1])/100.0)
+	f.close()
+
 	# income calculation
 	transportation_amount = deadweight * (year * 365 * 24) * 0.7 / (2 * distance / v)
 	transportation_amount_per_month = transportation_amount / (year * 12)
@@ -43,10 +52,10 @@ def ReturnNPV():
 			# print "Year:" +str(12*var) + " | " + str(Oil_Month_Price[12*var])
 			# print "Month:" +str(12*var + num) +  " | " + str(Oil_Month_Price[12*var + num])
 
-			# with this method, I can caluculte just one year income!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			# must be chabged!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			income_per_year += (0.1932 * Oil_Month_Price[12*var] + 6.713) * WS_rate * transportation_amount_per_month
-			c_fuel_per_year += fc * 30 * (Oil_Month_Price[num] / 0.143 )
+			# なんかやべえ感じになった
+			income_per_year += (0.1932 * Oil_Month_Price[12*var] + 6.713) * WS_Month_rate[12*var+num] * transportation_amount_per_month
+			#income_per_year += (0.1932 * Oil_Month_Price[12*var] + 6.713) * WS_rate * transportation_amount_per_month
+			c_fuel_per_year += fc * 30 * (Oil_Month_Price[12*var+num] / 0.143 )
 		outcome_per_year = c_fuel_per_year + 12*operation_cost + 12*other_cost
 		NPV += ((income_per_year - outcome_per_year)) / (1 + discount_rate)**var
 	NPV = NPV - c_build

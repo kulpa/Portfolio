@@ -9,8 +9,11 @@ import random
 import numpy as np
 import os
 import logging
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
+import settings as s
 
-year = 20
+year = s.YEAR
 
 logging.info('Calculation about binomial_lattice_model start')
 # read the csv file and calculate the parameter # 

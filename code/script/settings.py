@@ -2,9 +2,10 @@
 This File describes the fixed parameter of the program
 @author: Kodai Ito, 2015/10/07
 """
-
+import logging
+logging.basicConfig(level="INFO")
 # Commmon Parameter
-YEAR = 20                   #year
+YEAR = 15                   #year
 DISCOUNT_RATE = 0.07        #7%
 
 # About VLCC
@@ -14,8 +15,8 @@ VLCC_DISTANCE = 10605       #km
 WS_RATE = 0.7               #70%
 VLCC_FC = 100               #ton/day fuel consumption
 VLCC_BUILD = 120000000      #USD to build
-VLCC_OPE = 2400000/12		#Operation cost
-VLCC_OTHER = 1000000/12		#Other cost
+VLCC_OPE = 200000			#Operation cost
+VLCC_OTHER = 100000			#Other cost
 
 # source of building cost: http://marketrealist.com/2013/07/new-capesize-price-jumps-most-in-5-years-positive-for-dry-bulk-shipping-stocks/
 
@@ -26,8 +27,8 @@ VLCC_OTHER = 1000000/12		#Other cost
 #BC_VELOCITY = 18.5        	#km/h
 #BC_DISTANCE = 5472	      	#km  Japan to Australlia
 BC_BUILD = 60000000      	#USD to build # This must be changed!!!!!
-BC_OPE = 1200000/12			#Operation cost
-BC_OTHER = 800000/12		#Other cost
+BC_OPE = 100000				#Operation cost
+BC_OTHER = 80000			#Other cost
 
 # About BulkPanamax
 # http://hudsonshipping.com/?q=node/95
@@ -35,15 +36,15 @@ BC_OTHER = 800000/12		#Other cost
 #BP_VELOCITY = 26.5        	#km/h
 #BP_DISTANCE = 5472	      	#km  Japan to Australlia # This must be changed
 BP_BUILD = 40000000       	#USD to build # This must be changed!!!!!
-BP_OPE = 800000/12			#Operation cost
-BP_OTHER = 400000/12		#Other cost
+BP_OPE = 70000				#Operation cost
+BP_OTHER = 70000			#Other cost
 
 # About BulkSupramax
 # http://hudsonshipping.com/?q=node/95
 #BS_DEADWEIGHT = 55000     	#ton
 #BS_VELOCITY = 26.5        	#km/h
 #BS_DISTANCE = 5472	      	#km  Japan to Australlia # This must be changed
-BS_BUILD = 35000000       	#USD to build # This must be changed!!!!!
-BS_OPE = 700000/12			#Operation cost
-BS_OTHER = 350000/12		#Other cost
+BS_BUILD = 20000000       	#USD to build # This must be changed!!!!!
+BS_OPE = 50000				#Operation cost
+BS_OTHER = 20000			#Other cost
 

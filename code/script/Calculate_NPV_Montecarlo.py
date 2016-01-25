@@ -53,29 +53,119 @@ def ReturnNPArrayData():
 	#map(lambda n:n/s.BC_BUILD, BCn)
 
 def WriteNPVHistgram():
-	plt.hist(BCn)
-	plt.hist(BPn)
-	plt.hist(BSn)
-	plt.hist(VLn)
+	# plt.hist(VLn, range=(-1*10**8, 3*10**8),bins=1000,histtype='stepfilled')
+	# plt.hist(BCn, range=(-1*10**8, 3*10**8),bins=1000,histtype='stepfilled')
+	# plt.hist(BPn, range=(-1*10**8, 3*10**8),bins=1000,histtype='stepfilled')
+	# plt.hist(BSn, range=(-1*10**8, 3*10**8),bins=1000,histtype='stepfilled')
 
+	#multi=np.array(np.vstack((VLn, BCn, BPn, BSn)))
+	# multi=[VLn,BCn,BPn,BSn]
+	# print multi
+	# plt.hist(multi,histtype='bar')
+
+	plt.hist(VLn,histtype='bar')
+	plt.hist(BCn,histtype='bar')
+	plt.hist(BPn,histtype='bar')
+	plt.hist(BSn,histtype='bar')
 
 	plt.title("Histgram of NPV")
 	plt.xlabel("NPV[USD]")
 	plt.ylabel("Frequency")
-	plt.legend(['Capesize','Panamax','Supramax','VLCC'])
+	plt.legend(['VLCC','Capesize','Panamax','Supramax'])
+	plt.savefig("../image/npv_hist")
+	plt.show()
+
+def WriteVLCCHistgram():
+	plt.hist(VLn, color = "blue", range=(-1*10**8, 3*10**8),bins=50)
+
+	plt.title("Histgram of VLCC NPV")
+	plt.xlabel("NPV[USD]")
+	plt.ylabel("Frequency")
+	plt.legend(['VLCC'])
+	plt.savefig("../image/npv_VLCC_hist")
+	plt.show()
+
+def WriteCapesizeHistgram():
+	plt.hist(BCn, color = "green", range=(-1*10**8, 3*10**8),bins=50)
+
+	plt.title("Histgram of Capesize NPV")
+	plt.xlabel("NPV[USD]")
+	plt.ylabel("Frequency")
+	plt.legend(['Capesize'])
+	plt.savefig("../image/npv_Capesize_hist")
+	plt.show()
+
+def WritePanamaxHistgram():
+	plt.hist(BPn, color = "red", range=(-1*10**8, 3*10**8),bins=50)
+
+	plt.title("Histgram of Panamax NPV")
+	plt.xlabel("NPV[USD]")
+	plt.ylabel("Frequency")
+	plt.legend(['Panamax'])
+	plt.savefig("../image/npv_Panamax_hist")
+	plt.show()
+
+def WriteSupramaxHistgram():
+	plt.hist(BSn, color = "cyan", range=(-1*10**8, 3*10**8),bins=50)
+
+	plt.title("Histgram of Supramax NPV")
+	plt.xlabel("NPV[USD]")
+	plt.ylabel("Frequency")
+	plt.legend(['Supramax'])
+	plt.savefig("../image/npv_Supramax_hist")
 	plt.show()
 
 def WriteReturnHistgram():
+	plt.hist(VLn_return_rate)
 	plt.hist(BCn_return_rate)
 	plt.hist(BPn_return_rate)
 	plt.hist(BSn_return_rate)
-	plt.hist(VLn_return_rate)
-
 
 	plt.title("Histgram of Return rate")
 	plt.xlabel("NPV_Return")
 	plt.ylabel("Frequency")
-	plt.legend(['Capesize','Panamax','Supramax','VLCC'])
+	plt.legend(['VLCC','Capesize','Panamax','Supramax'])
+	plt.savefig("../image/return_hist")
+	plt.show()
+
+def WriteReVLCCHistgram():
+	plt.hist(VLn_return_rate, color = "blue", range=(-0.5, 2),bins=50)
+
+	plt.title("Histgram of VLCC Return rate")
+	plt.xlabel("NPV_Return")
+	plt.ylabel("Frequency")
+	plt.legend(['VLCC'])
+	plt.savefig("../image/npv_Re_VLCC_hist")
+	plt.show()
+
+def WriteReCapesizeHistgram():
+	plt.hist(BCn_return_rate, color = "green", range=(-0.5, 2),bins=50)
+
+	plt.title("Histgram of Capesize Return rate")
+	plt.xlabel("NPV_Return")
+	plt.ylabel("Frequency")
+	plt.legend(['Capesize'])
+	plt.savefig("../image/npv_Re_Capesize_hist")
+	plt.show()
+
+def WriteRePanamaxHistgram():
+	plt.hist(VLn_return_rate, color = "red", range=(-0.5, 2),bins=50)
+
+	plt.title("Histgram of Panamax Return NPV")
+	plt.xlabel("NPV_Return")
+	plt.ylabel("Frequency")
+	plt.legend(['Panamax'])
+	plt.savefig("../image/npv_Re_Panamax_hist")
+	plt.show()
+
+def WriteReSupramaxHistgram():
+	plt.hist(BSn_return_rate, color = "cyan", range=(-0.5, 2),bins=50)
+
+	plt.title("Histgram of Supramax Return NPV")
+	plt.xlabel("NPV_Return")
+	plt.ylabel("Frequency")
+	plt.legend(['Supramax'])
+	plt.savefig("../image/npv_Re_Supramax_hist")
 	plt.show()
 
 def CoefficientAnalysis():
@@ -100,6 +190,17 @@ def CoefficientAnalysis():
 CoefficientAnalysis()
 WriteNPVHistgram()
 WriteReturnHistgram()
+
+WriteVLCCHistgram()
+WriteCapesizeHistgram()
+WritePanamaxHistgram()
+WriteSupramaxHistgram()
+
+WriteReVLCCHistgram()
+WriteReCapesizeHistgram()
+WriteRePanamaxHistgram()
+WriteReSupramaxHistgram()
+
 
 
 

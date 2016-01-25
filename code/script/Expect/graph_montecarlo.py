@@ -10,7 +10,14 @@ import matplotlib
 from datetime import datetime as dt
 
 #f = open('../../data/CrudeOilPrice.csv', 'rb')
-f = open('/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/data/CrudeOilPrice.csv', 'rb')
+filepath='/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/data/CrudeOilPrice.csv'
+kind="Oil"
+if kind == "WS":
+	f = open(filepath, 'rU')
+else:
+	f = open(filepath, 'rb')
+#f = open('/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/data//ODA-PIORECR_USD.csv', 'rb')
+monte_time=10
 
 dataReader = csv.reader(f)
 
@@ -23,7 +30,10 @@ for row in dataReader:
 	if j != 0:
    		dates.append(row[0])
    		data_prices.append(float(row[1]))
-   		tdatetime.append(dt.strptime(row[0], '%Y-%m-%d'))
+   		try:
+   			tdatetime.append(dt.strptime(row[0], '%Y-%m-%d'))
+   		except:
+   			tdatetime.append(dt.strptime(row[0], '%Y/%m/%d'))
    	else:
    		j = 1
 
@@ -36,16 +46,16 @@ max_price = 0
 min_prices = []
 min_price = 10000
 d = []
-for num in range(100):
+for num in range(monte_time):
 	
-	print "Processed: " + str(float(num)/1000.0 * 100) + "%"
+	print "Processed: " + str(float(num)/monte_time * 100) + "%"
  
 	#orn.ornstein_uhlenbeck_model() # recalculate
 	oe.binomial_lattice_model()
 	#gmr.geometric_mean_reversion()
 
 	#f = open('../../scenario/Oil_scenario_ornstein.csv', 'rb')
-	f = open('/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/scenario/Oil_scenario.csv', 'rb')
+	f = open('/Users/itokoudai/Documents/school_class/MyLabratory/GraduateThesis/code/scenario/%s_scenario.csv'%kind, 'rb')
 
 
 	dataReader = csv.reader(f)
@@ -76,6 +86,8 @@ for num in range(100):
 # graph_date2 = matplotlib.dates.date2num(d)
 # plt.plot_date(graph_date2,max_prices,'-')
 # plt.plot_date(graph_date2,min_prices,'-')
+plt.title("Expectaion of %s"%kind)
 plt.xlabel("[year]")
-plt.ylabel("Oil[USD/h]")	
+plt.ylabel(kind)
+plt.savefig("../../image/binomial_%s%s"%(kind,monte_time))	
 plt.show()

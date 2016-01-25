@@ -42,14 +42,18 @@ def WriteBalticCSV():
 	now_month = 10
 
 	for Oil_Month_Price in Oil_Month_Prices:
-		# BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,1384) # This must be changed!!!
-		# BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,957)# This must be changed!!!
-		# BSI = -1 * Oil_Month_Price + 0.9 * BSI + np.random.normal(0,214) 		# Tekitoooooooooooooooooooooo
+		# Correlate with other BDI
+		# BCI_before = BCI
+		# BPI_before = BPI
+		# BSI_before = BSI	
+		# BCI = -995 + 14.2 * Oil_Month_Price - 0.6 * BPI_before + 2.4 * BSI_before
+		# BPI = 207 + 3.3 * Oil_Month_Price + 0.39 * BPI_before + 0.005 * BCI_before
+		# BSI = 9 + 1.7 * Oil_Month_Price + 0.67 * BSI_before + 0.11 * BCI_before
+		# the result was these correlation efficient was too big
 
-		# keep the correlation coefficient
-		BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,500) 
-		BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,300)
-		BSI = 0.31 * Oil_Month_Price + 0.7 * BSI + 170 + np.random.normal(0,200) 		
+		BCI = -8.51 * Oil_Month_Price + 0.7 * BCI + 1425 + np.random.normal(0,1300) 
+		BPI = -3.54 * Oil_Month_Price + 0.90 * BPI + 447 + np.random.normal(0,957)
+		BSI = 0.31 * Oil_Month_Price + 0.7 * BSI + 170 + np.random.normal(0,214) 	
 
 		if now_month == 13:
 			now_month = 1

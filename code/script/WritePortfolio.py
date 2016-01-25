@@ -171,20 +171,22 @@ ax.plot(risks, returns, 'y-o', markersize=5, picker=5)
 browser = PointBrowser(fig, ax)
 fig.canvas.mpl_connect('pick_event', browser.onpick)
 
-
+plt.savefig("../image/portfolio")
 plt.show()
 
 def WriteOptPortfolioHistgram():
     np_opt_array = np.asarray(opt_weight_list)
-    plt.hist(np_opt_array.T[0],normed=True,bins=10)
-    plt.hist(np_opt_array.T[1],normed=True,bins=20,alpha=0.7)
-    plt.hist(np_opt_array.T[2],normed=True,bins=3)
-    plt.hist(np_opt_array.T[3],normed=True,bins=20,alpha=0.7)
+    # plt.hist(np_opt_array.T[0],normed=True,bins=10)
+    # plt.hist(np_opt_array.T[1],normed=True,bins=20,alpha=0.7)
+    # plt.hist(np_opt_array.T[2],normed=True,bins=3)
+    # plt.hist(np_opt_array.T[3],normed=True,bins=20,alpha=0.7)
+    plt.hist(np.array(np_opt_array),normed=True)
 
     plt.title("Histgram of Optimal Portfolio")
     plt.xlabel("Percentage")
     plt.ylabel("Frequency")
     plt.legend(['Capesize','Panamax','Supramax','VLCC'])
+    plt.savefig("../image/opt_portfolio_hist")
     plt.show()
 
 def WriteRandomPortfolioHistgram():
@@ -198,5 +200,5 @@ def WriteRandomPortfolioHistgram():
     plt.show()
 
 WriteOptPortfolioHistgram()
-WriteRandomPortfolioHistgram()
+# WriteRandomPortfolioHistgram()
 # fig = plt.figure()

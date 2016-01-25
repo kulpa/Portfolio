@@ -1,2 +1,6 @@
 Oil_Price.csv : https://www.quandl.com/collections/markets/crude-oil 
 DCOILWTICO.csv : https://research.stlouisfed.org/fred2/series/DCOILWTICO/downloaddata
+ODA-PIORECR_USD.csv : https://www.quandl.com/data/ODA/PIORECR_USD-Iron-Ore-Price
+BLSI-APU0000701312.csv : https://www.quandl.com/data/BLSI/APU0000701312-Average-Price-for-Rice-white-long-grain-uncooked-per-lb-453-6-gm-in-U-S-city-average
+TFGRAIN-CORN.csv : https://www.quandl.com/data/TFGRAIN/CORN-Cash-Price-of-Corn
+ODA-PCOALAU_USD.csv : https://www.quandl.com/data/ODA/PCOALAU_USD-Coal-Price
